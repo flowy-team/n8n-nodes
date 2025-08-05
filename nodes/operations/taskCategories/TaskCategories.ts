@@ -85,8 +85,11 @@ export const taskCategoriesFields: INodeProperties[] = [
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number',
-		default: 10,
-		description: 'Number of items to return',
+		typeOptions: {
+			minValue: 1,
+		},
+		default: 50,
+		description: 'Max number of results to return',
 		displayOptions: {
 			show: { 
 				resource: ['taskCategory'],

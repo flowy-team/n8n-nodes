@@ -151,11 +151,11 @@ export const keyResultFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'KRS Unit',
-				name: 'krs_unit',
+				displayName: 'KRS Confidence',
+				name: 'krs_conf',
 				type: 'string',
 				default: '',
-				description: 'The unit of measurement for the key result',
+				description: 'The confidence level of the key result',
 			},
 			{
 				displayName: 'KRS Description',
@@ -163,20 +163,6 @@ export const keyResultFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				description: 'The description of the key result',
-			},
-			{
-				displayName: 'KRS Weight',
-				name: 'krs_weight',
-				type: 'string',
-				default: '',
-				description: 'The weight of the key result',
-			},
-			{
-				displayName: 'KRS Confidence',
-				name: 'krs_conf',
-				type: 'string',
-				default: '',
-				description: 'The confidence level of the key result',
 			},
 			{
 				displayName: 'KRS Leader',
@@ -191,6 +177,20 @@ export const keyResultFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				description: 'The remarks for the key result',
+			},
+			{
+				displayName: 'KRS Unit',
+				name: 'krs_unit',
+				type: 'string',
+				default: '',
+				description: 'The unit of measurement for the key result',
+			},
+			{
+				displayName: 'KRS Weight',
+				name: 'krs_weight',
+				type: 'string',
+				default: '',
+				description: 'The weight of the key result',
 			},
 		],
 	},
@@ -282,11 +282,11 @@ export const keyResultFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'KRS Unit',
-				name: 'krs_unit',
+				displayName: 'KRS Confidence',
+				name: 'krs_conf',
 				type: 'string',
 				default: '',
-				description: 'The unit of measurement for the key result',
+				description: 'The confidence level of the key result',
 			},
 			{
 				displayName: 'KRS Description',
@@ -294,20 +294,6 @@ export const keyResultFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				description: 'The description of the key result',
-			},
-			{
-				displayName: 'KRS Weight',
-				name: 'krs_weight',
-				type: 'string',
-				default: '',
-				description: 'The weight of the key result',
-			},
-			{
-				displayName: 'KRS Confidence',
-				name: 'krs_conf',
-				type: 'string',
-				default: '',
-				description: 'The confidence level of the key result',
 			},
 			{
 				displayName: 'KRS Leader',
@@ -322,6 +308,20 @@ export const keyResultFields: INodeProperties[] = [
 				type: 'string',
 				default: '',
 				description: 'The remarks for the key result',
+			},
+			{
+				displayName: 'KRS Unit',
+				name: 'krs_unit',
+				type: 'string',
+				default: '',
+				description: 'The unit of measurement for the key result',
+			},
+			{
+				displayName: 'KRS Weight',
+				name: 'krs_weight',
+				type: 'string',
+				default: '',
+				description: 'The weight of the key result',
 			},
 		],
 	},
@@ -387,7 +387,7 @@ export const keyResultFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		default: 'created_at',
+		default: 'id',
 		description: 'Field to sort by',
 		options: [
 			{
@@ -405,14 +405,17 @@ export const keyResultFields: INodeProperties[] = [
 		displayName: 'Limit',
 		name: 'limit',
 		type: 'number',
+		typeOptions: {
+			minValue: 1,
+		},
 		displayOptions: {
 			show: {
 				resource: ['keyResult'],
 				operation: ['getAll'],
 			},
 		},
-		default: 10,
-		description: 'Number of key results to return',
+		default: 50,
+		description: 'Max number of results to return',
 	},
 	{
 		displayName: 'Page',

@@ -28,7 +28,7 @@ export const attendanceOperations: INodeProperties[] = [
 				name: 'Today',
 				value: 'today',
 				description: 'Retrieve current day attendance records',
-				action: 'Get today\'s attendance',
+				action: 'Get today s attendance',
 			},
 		],
 		default: 'clockIn',

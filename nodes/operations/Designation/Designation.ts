@@ -131,7 +131,6 @@ export const designationFields: INodeProperties[] = [
     },
     typeOptions: {
       minValue: 1,
-      maxValue: 1000,
     },
     default: 50,
     description: 'Max number of results to return',

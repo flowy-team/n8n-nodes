@@ -136,37 +136,6 @@ export const objectiveFields: INodeProperties[] = [
 		},
 		options: [
 			{
-				displayName: 'Type',
-				name: 'type',
-				type: 'string',
-				default: 'company',
-				description: 'The type of objective',
-			},
-			{
-				displayName: 'Current Cycle',
-				name: 'currentCycle',
-				type: 'string',
-				default: '',
-				description: 'The current cycle ID',
-			},
-			{
-				displayName: 'Key Result Parent ID',
-				name: 'key_result_parent_id',
-				type: 'string',
-				default: '',
-				description: 'The parent key result ID',
-			},
-			{
-				displayName: 'Description',
-				name: 'description',
-				type: 'string',
-				typeOptions: {
-					rows: 3,
-				},
-				default: '',
-				description: 'Description of the objective',
-			},
-			{
 				displayName: 'Confidence',
 				name: 'confidence',
 				type: 'options',
@@ -188,11 +157,61 @@ export const objectiveFields: INodeProperties[] = [
 				description: 'Confidence level for the objective',
 			},
 			{
+				displayName: 'Current Cycle',
+				name: 'currentCycle',
+				type: 'string',
+				default: '',
+				description: 'The current cycle ID',
+			},
+			{
+				displayName: 'Description',
+				name: 'description',
+				type: 'string',
+				typeOptions: {
+					rows: 3,
+				},
+				default: '',
+				description: 'Description of the objective',
+			},
+			{
+				displayName: 'Employee Access',
+				name: 'employee_access',
+				type: 'string',
+				typeOptions: {
+					multipleValues: true,
+				},
+				default: [],
+				description: 'Employee IDs who have access to this objective',
+			},
+			{
+				displayName: 'Key Result Parent ID',
+				name: 'key_result_parent_id',
+				type: 'string',
+				default: '',
+				description: 'The parent key result ID',
+			},
+			{
 				displayName: 'Leader Model ID',
 				name: 'leader_model_id',
 				type: 'string',
 				default: '',
-				description: 'The leader model ID',
+			},
+			{
+				displayName: 'Objective Remarks',
+				name: 'obj_remarks',
+				type: 'string',
+				typeOptions: {
+					rows: 2,
+				},
+				default: '',
+				description: 'Additional remarks for the objective',
+			},
+			{
+				displayName: 'Type',
+				name: 'type',
+				type: 'string',
+				default: 'company',
+				description: 'The type of objective',
 			},
 			{
 				displayName: 'View Options',
@@ -214,26 +233,6 @@ export const objectiveFields: INodeProperties[] = [
 				],
 				default: 'everyone',
 				description: 'Who can view this objective',
-			},
-			{
-				displayName: 'Employee Access',
-				name: 'employee_access',
-				type: 'string',
-				typeOptions: {
-					multipleValues: true,
-				},
-				default: [],
-				description: 'Employee IDs who have access to this objective',
-			},
-			{
-				displayName: 'Objective Remarks',
-				name: 'obj_remarks',
-				type: 'string',
-				typeOptions: {
-					rows: 2,
-				},
-				default: '',
-				description: 'Additional remarks for the objective',
 			},
 		],
 	},
@@ -280,7 +279,7 @@ export const objectiveFields: INodeProperties[] = [
 				value: 'personal',
 			},
 		],
-		default: '',
+		default: 'company',
 		description: 'Filter objectives by type',
 	},
 	{
@@ -358,7 +357,7 @@ export const objectiveFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		default: 'created_at',
+		default: 'id',
 		description: 'Field to sort by',
 		options: [
 			{

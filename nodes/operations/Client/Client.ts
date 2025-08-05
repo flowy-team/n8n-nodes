@@ -26,6 +26,18 @@ export const clientOperations: INodeProperties[] = [
         },
       },
       {
+        name: 'Delete',
+        value: 'delete',
+        action: 'Delete client',
+        description: 'Permanently remove a client from the system',
+        routing: {
+          request: {
+            method: 'DELETE',
+            url: '=/client/{{$parameter.clientId}}',
+          },
+        },
+      },
+      {
         name: 'Get',
         value: 'get',
         action: 'Get client',
@@ -57,18 +69,6 @@ export const clientOperations: INodeProperties[] = [
         routing: {
           request: {
             method: 'PUT',
-            url: '=/client/{{$parameter.clientId}}',
-          },
-        },
-      },
-      {
-        name: 'Delete',
-        value: 'delete',
-        action: 'Delete client',
-        description: 'Permanently remove a client from the system',
-        routing: {
-          request: {
-            method: 'DELETE',
             url: '=/client/{{$parameter.clientId}}',
           },
         },
@@ -282,9 +282,8 @@ export const clientFields: INodeProperties[] = [
     },
     typeOptions: {
       minValue: 1,
-      maxValue: 1000,
     },
-    default: 10,
+    default: 50,
     description: 'Max number of results to return',
   },
   {
@@ -318,12 +317,33 @@ export const clientFields: INodeProperties[] = [
     },
     options: [
       {
+        displayName: 'Client ID',
+        name: 'client',
+        type: 'string',
+        default: '',
+        description: 'Filter by specific client ID',
+      },
+      {
+        displayName: 'End Date',
+        name: 'endDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Filter clients created up to this date',
+      },
+      {
         displayName: 'Search',
         name: 'search',
         type: 'string',
         default: '',
         description: 'Search clients by name, company name, or email',
         placeholder: 'Enter search term...',
+      },
+      {
+        displayName: 'Start Date',
+        name: 'startDate',
+        type: 'dateTime',
+        default: '',
+        description: 'Filter clients created from this date',
       },
       {
         displayName: 'Status',
@@ -345,27 +365,6 @@ export const clientFields: INodeProperties[] = [
         ],
         default: 'all',
         description: 'Filter by client status',
-      },
-      {
-        displayName: 'Start Date',
-        name: 'startDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Filter clients created from this date',
-      },
-      {
-        displayName: 'End Date',
-        name: 'endDate',
-        type: 'dateTime',
-        default: '',
-        description: 'Filter clients created up to this date',
-      },
-      {
-        displayName: 'Client ID',
-        name: 'client',
-        type: 'string',
-        default: '',
-        description: 'Filter by specific client ID',
       },
     ],
   },

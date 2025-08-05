@@ -36,7 +36,6 @@ export const employeeCreateDescription: INodeProperties[] = [
       { name: 'Female', value: 'female' },
     ],
     default: 'male',
-    description: 'Gender',
     displayOptions: { show: { operation: ['employee:create'] } },
   },
   {
@@ -84,7 +83,6 @@ export const employeeCreateDescription: INodeProperties[] = [
     name: 'address',
     type: 'string',
     default: '',
-    description: 'Address',
     displayOptions: { show: { operation: ['employee:create'] } },
   },
   {
@@ -116,7 +114,6 @@ export const employeeCreateDescription: INodeProperties[] = [
     name: 'preferredName',
     type: 'string',
     default: '',
-    description: 'Preferred name',
     displayOptions: { show: { operation: ['employee:create'] } },
   },
   {

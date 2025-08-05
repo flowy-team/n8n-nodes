@@ -9,142 +9,142 @@ import {
 } from 'n8n-workflow';
 
 // Import operations and fields
-import { attendanceOperations, attendanceFields } from './operations/Attendance/Attendance';
-import { clientOperations, clientFields } from './operations/Client/Client';
-import { departmentOperations, departmentFields } from './operations/Department/Department';
-import { designationOperations, designationFields } from './operations/Designation/Designation';
-import { employeeOperations, employeeFields } from './operations/Employee/Employee';
-import { holidayOperations, holidayFields } from './operations/Holiday/Holiday';
-import { keyResultOperations, keyResultFields } from './operations/KeyResult/KeyResult';
-import { kpiCategoryOperations, kpiCategoryFields } from './operations/kpiCategories/KpiCategories';
-import { kpiDataOperations, kpiDataFields } from './operations/kpiData/KPIData';
-import { kpiOperations, kpiFields } from './operations/kpi/KPI';
-import { leaveOperations, leaveFields } from './operations/Leave/Leave';
-import { objectiveOperations, objectiveFields } from './operations/Objective/Objective';
-import { performanceCycleOperations, performanceCycleFields } from './operations/PerformanceCycle/PerformanceCycle';
-import { projectCategoriesOperations, projectCategoriesFields } from './operations/projectCategories/ProjectCategories';
-import { projectsOperations, projectsFields } from './operations/projects/Projects';
-import { taskCategoriesOperations, taskCategoriesFields } from './operations/taskCategories/TaskCategories';
-import { tasksOperations, tasksFields } from './operations/tasks/Tasks';
-import { ticketChannelOperations, ticketChannelFields } from './operations/TicketChannel/TicketChannel';
-import { ticketOperations, ticketFields } from './operations/Ticket/Ticket';
-import { ticketTypeOperations, ticketTypeFields } from './operations/TicketType/TicketType';
-import { ticketAgentOperations, ticketAgentFields } from './operations/TicketAgent/TicketAgent';
+import { attendanceOperations, attendanceFields } from '../operations/Attendance/Attendance';
+import { clientOperations, clientFields } from '../operations/Client/Client';
+import { departmentOperations, departmentFields } from '../operations/Department/Department';
+import { designationOperations, designationFields } from '../operations/Designation/Designation';
+import { employeeOperations, employeeFields } from '../operations/Employee/Employee';
+import { holidayOperations, holidayFields } from '../operations/Holiday/Holiday';
+import { keyResultOperations, keyResultFields } from '../operations/KeyResult/KeyResult';
+import { kpiCategoryOperations, kpiCategoryFields } from '../operations/kpiCategories/KpiCategories';
+import { kpiDataOperations, kpiDataFields } from '../operations/kpiData/KPIData';
+import { kpiOperations, kpiFields } from '../operations/kpi/KPI';
+import { leaveOperations, leaveFields } from '../operations/Leave/Leave';
+import { objectiveOperations, objectiveFields } from '../operations/Objective/Objective';
+import { performanceCycleOperations, performanceCycleFields } from '../operations/PerformanceCycle/PerformanceCycle';
+import { projectCategoriesOperations, projectCategoriesFields } from '../operations/projectCategories/ProjectCategories';
+import { projectsOperations, projectsFields } from '../operations/projects/Projects';
+import { taskCategoriesOperations, taskCategoriesFields } from '../operations/taskCategories/TaskCategories';
+import { tasksOperations, tasksFields } from '../operations/tasks/Tasks';
+import { ticketChannelOperations, ticketChannelFields } from '../operations/TicketChannel/TicketChannel';
+import { ticketOperations, ticketFields } from '../operations/Ticket/Ticket';
+import { ticketTypeOperations, ticketTypeFields } from '../operations/TicketType/TicketType';
+import { ticketAgentOperations, ticketAgentFields } from '../operations/TicketAgent/TicketAgent';
 
 // Import ticket channel endpoints
-import { createTicketChannel } from './endpoint/ticket-channel/create';
-import { getTicketChannel } from './endpoint/ticket-channel/get';
-import { getAllTicketChannels } from './endpoint/ticket-channel/getAll';
-import { updateTicketChannel } from './endpoint/ticket-channel/update';
-import { deleteTicketChannel } from './endpoint/ticket-channel/delete';
+import { createTicketChannel } from '../endpoint/ticket-channel/create';
+import { getTicketChannel } from '../endpoint/ticket-channel/get';
+import { getAllTicketChannels } from '../endpoint/ticket-channel/getAll';
+import { updateTicketChannel } from '../endpoint/ticket-channel/update';
+import { deleteTicketChannel } from '../endpoint/ticket-channel/delete';
 
 // Import performance cycle endpoints
-import { createPerformanceCycle } from './endpoint/performance-cycle/create';
-import { getPerformanceCycle } from './endpoint/performance-cycle/get';
-import { getAllPerformanceCycles } from './endpoint/performance-cycle/getAll';
-import { updatePerformanceCycle } from './endpoint/performance-cycle/update';
-import { deletePerformanceCycle } from './endpoint/performance-cycle/delete';
+import { createPerformanceCycle } from '../endpoint/performance-cycle/create';
+import { getPerformanceCycle } from '../endpoint/performance-cycle/get';
+import { getAllPerformanceCycles } from '../endpoint/performance-cycle/getAll';
+import { updatePerformanceCycle } from '../endpoint/performance-cycle/update';
+import { deletePerformanceCycle } from '../endpoint/performance-cycle/delete';
 
 // Import endpoint functions
-import { createTask } from './endpoint/task/create';
-import { getTask, getAllTasks } from './endpoint/task/get';
-import { updateTask } from './endpoint/task/update';
-import { deleteTask } from './endpoint/task/delete';
-import { createTaskCategory } from './endpoint/task-category/create';
-import { getTaskCategory, getAllTaskCategories } from './endpoint/task-category/get';
-import { updateTaskCategory } from './endpoint/task-category/update';
-import { deleteTaskCategory } from './endpoint/task-category/delete';
-import { createProjectCategory } from './endpoint/project-category/create';
-import { getProjectCategory, showProjectCategories } from './endpoint/project-category/get';
-import { updateProjectCategory } from './endpoint/project-category/update';
-import { deleteProjectCategory } from './endpoint/project-category/delete';
-import { createProject } from './endpoint/projects/create';
-import { getProject, showProjects } from './endpoint/projects/get';
-import { updateProject } from './endpoint/projects/update';
-import { deleteProject } from './endpoint/projects/delete';
-import { createDepartment } from './endpoint/department/create';
-import { updateDepartment } from './endpoint/department/update';
-import { getDepartment, getAllDepartments } from './endpoint/department/get';
-import { deleteDepartment } from './endpoint/department/delete';
-import { createDesignation } from './endpoint/designation/create';
-import { getDesignation, getAllDesignations } from './endpoint/designation/get';
-import { updateDesignation } from './endpoint/designation/update';
-import { deleteDesignation } from './endpoint/designation/delete';
-import { createEmployee } from './endpoint/employee/create';
-import { getEmployee } from './endpoint/employee/get';
-import { getAllEmployees } from './endpoint/employee/getAll';
-import { updateEmployee } from './endpoint/employee/update';
-import { deleteEmployee } from './endpoint/employee/delete';
-import { createKPI } from './endpoint/kpi/create';
-import { getKPIs } from './endpoint/kpi/get';
-import { showKPI } from './endpoint/kpi/show';
-import { updateKPI } from './endpoint/kpi/update';
-import { deleteKPI } from './endpoint/kpi/delete';
-import { getKPIData } from './endpoint/kpi-data/get';
-import { showKPIData } from './endpoint/kpi-data/show';
-import { updateKPIData } from './endpoint/kpi-data/update';
-import { deleteKPIData } from './endpoint/kpi-data/delete';
-import { createKpiCategory } from './endpoint/kpi-category/create';
-import { getKpiCategories } from './endpoint/kpi-category/get';
-import { showKpiCategory } from './endpoint/kpi-category/show';
-import { updateKpiCategory } from './endpoint/kpi-category/update';
-import { deleteKpiCategory } from './endpoint/kpi-category/delete';
+import { createTask } from '../endpoint/task/create';
+import { getTask, getAllTasks } from '../endpoint/task/get';
+import { updateTask } from '../endpoint/task/update';
+import { deleteTask } from '../endpoint/task/delete';
+import { createTaskCategory } from '../endpoint/task-category/create';
+import { getTaskCategory, getAllTaskCategories } from '../endpoint/task-category/get';
+import { updateTaskCategory } from '../endpoint/task-category/update';
+import { deleteTaskCategory } from '../endpoint/task-category/delete';
+import { createProjectCategory } from '../endpoint/project-category/create';
+import { getProjectCategory, showProjectCategories } from '../endpoint/project-category/get';
+import { updateProjectCategory } from '../endpoint/project-category/update';
+import { deleteProjectCategory } from '../endpoint/project-category/delete';
+import { createProject } from '../endpoint/projects/create';
+import { getProject, showProjects } from '../endpoint/projects/get';
+import { updateProject } from '../endpoint/projects/update';
+import { deleteProject } from '../endpoint/projects/delete';
+import { createDepartment } from '../endpoint/department/create';
+import { updateDepartment } from '../endpoint/department/update';
+import { getDepartment, getAllDepartments } from '../endpoint/department/get';
+import { deleteDepartment } from '../endpoint/department/delete';
+import { createDesignation } from '../endpoint/designation/create';
+import { getDesignation, getAllDesignations } from '../endpoint/designation/get';
+import { updateDesignation } from '../endpoint/designation/update';
+import { deleteDesignation } from '../endpoint/designation/delete';
+import { createEmployee } from '../endpoint/employee/create';
+import { getEmployee } from '../endpoint/employee/get';
+import { getAllEmployees } from '../endpoint/employee/getAll';
+import { updateEmployee } from '../endpoint/employee/update';
+import { deleteEmployee } from '../endpoint/employee/delete';
+import { createKPI } from '../endpoint/kpi/create';
+import { getKPIs } from '../endpoint/kpi/get';
+import { showKPI } from '../endpoint/kpi/show';
+import { updateKPI } from '../endpoint/kpi/update';
+import { deleteKPI } from '../endpoint/kpi/delete';
+import { getKPIData } from '../endpoint/kpi-data/get';
+import { showKPIData } from '../endpoint/kpi-data/show';
+import { updateKPIData } from '../endpoint/kpi-data/update';
+import { deleteKPIData } from '../endpoint/kpi-data/delete';
+import { createKpiCategory } from '../endpoint/kpi-category/create';
+import { getKpiCategories } from '../endpoint/kpi-category/get';
+import { showKpiCategory } from '../endpoint/kpi-category/show';
+import { updateKpiCategory } from '../endpoint/kpi-category/update';
+import { deleteKpiCategory } from '../endpoint/kpi-category/delete';
 
 // Import holiday endpoint functions
-import { createHoliday } from './endpoint/holiday/create';
-import { getHoliday } from './endpoint/holiday/get';
-import { getAllHolidays } from './endpoint/holiday/getAll';
-import { updateHoliday } from './endpoint/holiday/update';
-import { deleteHoliday } from './endpoint/holiday/delete';
+import { createHoliday } from '../endpoint/holiday/create';
+import { getHoliday } from '../endpoint/holiday/get';
+import { getAllHolidays } from '../endpoint/holiday/getAll';
+import { updateHoliday } from '../endpoint/holiday/update';
+import { deleteHoliday } from '../endpoint/holiday/delete';
 
 // Import leave endpoint functions
-import { createLeave } from './endpoint/leave/create';
-import { getLeave } from './endpoint/leave/get';
-import { getAllLeaves } from './endpoint/leave/getAll';
-import { updateLeave } from './endpoint/leave/update';
-import { deleteLeave } from './endpoint/leave/delete';
+import { createLeave } from '../endpoint/leave/create';
+import { getLeave } from '../endpoint/leave/get';
+import { getAllLeaves } from '../endpoint/leave/getAll';
+import { updateLeave } from '../endpoint/leave/update';
+import { deleteLeave } from '../endpoint/leave/delete';
 
 // Import client endpoint functions
-import createClient from './endpoint/client/create';
-import getClient from './endpoint/client/get';
-import { getAllClients } from './endpoint/client/getAll';
-import updateClient from './endpoint/client/update';
-import deleteClient from './endpoint/client/delete';
+import createClient from '../endpoint/client/create';
+import getClient from '../endpoint/client/get';
+import { getAllClients } from '../endpoint/client/getAll';
+import updateClient from '../endpoint/client/update';
+import deleteClient from '../endpoint/client/delete';
 
 // Import ticket type endpoint functions
-import createTicketType from './endpoint/ticket-type/create';
-import getTicketType from './endpoint/ticket-type/get';
-import { getAllTicketTypes } from './endpoint/ticket-type/getAll';
-import updateTicketType from './endpoint/ticket-type/update';
-import deleteTicketType from './endpoint/ticket-type/delete';
+import createTicketType from '../endpoint/ticket-type/create';
+import getTicketType from '../endpoint/ticket-type/get';
+import { getAllTicketTypes } from '../endpoint/ticket-type/getAll';
+import updateTicketType from '../endpoint/ticket-type/update';
+import deleteTicketType from '../endpoint/ticket-type/delete';
 
 // Import objective endpoint functions
-import { createObjective } from './endpoint/objective/create';
-import { getObjective } from './endpoint/objective/get';
-import { showObjectives } from './endpoint/objective/show';
-import { updateObjective } from './endpoint/objective/update';
-import { deleteObjective } from './endpoint/objective/delete';
+import { createObjective } from '../endpoint/objective/create';
+import { getObjective } from '../endpoint/objective/get';
+import { showObjectives } from '../endpoint/objective/show';
+import { updateObjective } from '../endpoint/objective/update';
+import { deleteObjective } from '../endpoint/objective/delete';
 
 // Import key result endpoint functions
-import { createKeyResult } from './endpoint/key-result/create';
-import { getKeyResult } from './endpoint/key-result/get';
-import { showKeyResults } from './endpoint/key-result/show';
-import { updateKeyResult } from './endpoint/key-result/update';
-import { deleteKeyResult } from './endpoint/key-result/delete';
+import { createKeyResult } from '../endpoint/key-result/create';
+import { getKeyResult } from '../endpoint/key-result/get';
+import { showKeyResults } from '../endpoint/key-result/show';
+import { updateKeyResult } from '../endpoint/key-result/update';
+import { deleteKeyResult } from '../endpoint/key-result/delete';
 
 // Import attendance endpoint functions
-import { clockIn } from './endpoint/attendance/clockIn';
-import { clockOut } from './endpoint/attendance/clockOut';
-import { today } from './endpoint/attendance/today';
+import { clockIn } from '../endpoint/attendance/clockIn';
+import { clockOut } from '../endpoint/attendance/clockOut';
+import { today } from '../endpoint/attendance/today';
 
 // Import ticket endpoint functions
-import { getTicket, getAllTickets } from './endpoint/ticket/get';
-import { createTicket } from './endpoint/ticket/create';
-import { updateTicket } from './endpoint/ticket/update';
-import { deleteTicket } from './endpoint/ticket/delete';
+import { getTicket, getAllTickets } from '../endpoint/ticket/get';
+import { createTicket } from '../endpoint/ticket/create';
+import { updateTicket } from '../endpoint/ticket/update';
+import { deleteTicket } from '../endpoint/ticket/delete';
 
 // Import ticket agent endpoint functions
-import { getTicketAgents } from './endpoint/ticket-agent/get';
+import { getTicketAgents } from '../endpoint/ticket-agent/get';
 
 // Resource selector - first level selection
 const resourceSelector: INodeProperties = {

@@ -213,7 +213,7 @@ export const performanceCycleFields: INodeProperties[] = [
         operation: ['getAll'],
       },
     },
-    default: 'created_at',
+    default: 'id',
     description: 'Field to sort by',
     options: [
       {

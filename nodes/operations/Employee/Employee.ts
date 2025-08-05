@@ -67,6 +67,7 @@ export const employeeFields: INodeProperties[] = [
     displayName: 'Email',
     name: 'email',
     type: 'string',
+				placeholder: 'name@email.com',
     default: '',
     required: true,
     description: 'Email address of the employee',
@@ -368,9 +369,8 @@ export const employeeFields: INodeProperties[] = [
     },
     typeOptions: {
       minValue: 1,
-      maxValue: 1000,
     },
-    default: 10,
+    default: 50,
     description: 'Max number of results to return',
   },
   {
