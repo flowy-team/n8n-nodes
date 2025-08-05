@@ -216,24 +216,24 @@ export const ticketFields: INodeProperties[] = [
 				type: 'options',
 				options: [
 					{
-						name: 'Pending',
-						value: 'pending',
-					},
-					{
-						name: 'Open',
-						value: 'open',
+						name: 'Closed',
+						value: 'closed',
 					},
 					{
 						name: 'In Progress',
 						value: 'in_progress',
 					},
 					{
-						name: 'Resolved',
-						value: 'resolved',
+						name: 'Open',
+						value: 'open',
 					},
 					{
-						name: 'Closed',
-						value: 'closed',
+						name: 'Pending',
+						value: 'pending',
+					},
+					{
+						name: 'Resolved',
+						value: 'resolved',
 					},
 				],
 				default: 'pending',
@@ -316,24 +316,24 @@ export const ticketFields: INodeProperties[] = [
 				type: 'options',
 				options: [
 					{
-						name: 'Pending',
-						value: 'pending',
-					},
-					{
-						name: 'Open',
-						value: 'open',
+						name: 'Closed',
+						value: 'closed',
 					},
 					{
 						name: 'In Progress',
 						value: 'in_progress',
 					},
 					{
-						name: 'Resolved',
-						value: 'resolved',
+						name: 'Open',
+						value: 'open',
 					},
 					{
-						name: 'Closed',
-						value: 'closed',
+						name: 'Pending',
+						value: 'pending',
+					},
+					{
+						name: 'Resolved',
+						value: 'resolved',
 					},
 				],
 				default: 'pending',
@@ -497,16 +497,16 @@ export const ticketFields: INodeProperties[] = [
 						value: 'all',
 					},
 					{
+						name: 'High',
+						value: 'high',
+					},
+					{
 						name: 'Low',
 						value: 'low',
 					},
 					{
 						name: 'Medium',
 						value: 'medium',
-					},
-					{
-						name: 'High',
-						value: 'high',
 					},
 					{
 						name: 'Urgent',
@@ -541,6 +541,10 @@ export const ticketFields: INodeProperties[] = [
 						value: 'all',
 					},
 					{
+						name: 'Closed',
+						value: 'closed',
+					},
+					{
 						name: 'Open',
 						value: 'open',
 					},
@@ -551,10 +555,6 @@ export const ticketFields: INodeProperties[] = [
 					{
 						name: 'Resolved',
 						value: 'resolved',
-					},
-					{
-						name: 'Closed',
-						value: 'closed',
 					},
 				],
 				default: 'all',

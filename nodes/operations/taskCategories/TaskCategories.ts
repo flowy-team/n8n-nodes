@@ -19,6 +19,12 @@ export const taskCategoriesOperations: INodeProperties[] = [
 				action: 'Create task category',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a task category from the system',
+				action: 'Delete task category',
+			},
+			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve specific task category information by ID',
@@ -35,12 +41,6 @@ export const taskCategoriesOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Modify task category details and settings',
 				action: 'Update task category',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a task category from the system',
-				action: 'Delete task category',
 			},
 		],
 		default: 'getAll',

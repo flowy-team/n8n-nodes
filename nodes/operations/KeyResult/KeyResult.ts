@@ -19,6 +19,12 @@ export const keyResultOperations: INodeProperties[] = [
 				action: 'Create key result',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a key result from the system',
+				action: 'Delete key result',
+			},
+			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve specific key result information by ID',
@@ -35,12 +41,6 @@ export const keyResultOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Modify key result progress and values',
 				action: 'Update key result',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a key result from the system',
-				action: 'Delete key result',
 			},
 		],
 		default: 'create',

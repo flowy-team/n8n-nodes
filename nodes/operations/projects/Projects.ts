@@ -19,6 +19,12 @@ export const projectsOperations: INodeProperties[] = [
 				action: 'Create project',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a project from the system',
+				action: 'Delete project',
+			},
+			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve project details and information by ID',
@@ -35,12 +41,6 @@ export const projectsOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Modify project details and settings',
 				action: 'Update project',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a project from the system',
-				action: 'Delete project',
 			},
 		],
 		default: 'create',
@@ -181,11 +181,11 @@ export const projectsFields: INodeProperties[] = [
 				name: 'status',
 				type: 'options',
 				options: [
-					{ name: 'Not Started', value: 'not started' },
-					{ name: 'In Progress', value: 'in progress' },
-					{ name: 'On Hold', value: 'on hold' },
 					{ name: 'Cancelled', value: 'cancelled' },
 					{ name: 'Finished', value: 'finished' },
+					{ name: 'In Progress', value: 'in progress' },
+					{ name: 'Not Started', value: 'not started' },
+					{ name: 'On Hold', value: 'on hold' },
 				],
 				default: 'not started',
 				description: 'The status of the project',
@@ -302,24 +302,24 @@ export const projectsFields: INodeProperties[] = [
 						value: 'all',
 					},
 					{
-						name: 'Not Started',
-						value: 'not started',
-					},
-					{
-						name: 'In Progress',
-						value: 'in progress',
-					},
-					{
-						name: 'On Hold',
-						value: 'on hold',
-					},
-					{
 						name: 'Cancelled',
 						value: 'cancelled',
 					},
 					{
 						name: 'Finished',
 						value: 'finished',
+					},
+					{
+						name: 'In Progress',
+						value: 'in progress',
+					},
+					{
+						name: 'Not Started',
+						value: 'not started',
+					},
+					{
+						name: 'On Hold',
+						value: 'on hold',
 					},
 				],
 				default: 'all',
@@ -519,11 +519,11 @@ export const projectsFields: INodeProperties[] = [
 				name: 'status',
 				type: 'options',
 				options: [
-					{ name: 'Not Started', value: 'not started' },
-					{ name: 'In Progress', value: 'in progress' },
-					{ name: 'On Hold', value: 'on hold' },
 					{ name: 'Cancelled', value: 'cancelled' },
 					{ name: 'Finished', value: 'finished' },
+					{ name: 'In Progress', value: 'in progress' },
+					{ name: 'Not Started', value: 'not started' },
+					{ name: 'On Hold', value: 'on hold' },
 				],
 				default: 'not started',
 				description: 'The new status of the project',

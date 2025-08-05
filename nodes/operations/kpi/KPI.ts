@@ -19,10 +19,10 @@ export const kpiOperations: INodeProperties[] = [
 				action: 'Create KPI',
 			},
 			{
-				name: 'Get Many',
-				value: 'getAll',
-				description: 'Retrieve multiple KPIs with filtering options',
-				action: 'Get many kp is',
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a KPI from the system',
+				action: 'Delete KPI',
 			},
 			{
 				name: 'Get',
@@ -31,16 +31,16 @@ export const kpiOperations: INodeProperties[] = [
 				action: 'Get KPI',
 			},
 			{
+				name: 'Get Many',
+				value: 'getAll',
+				description: 'Retrieve multiple KPIs with filtering options',
+				action: 'Get many kp is',
+			},
+			{
 				name: 'Update',
 				value: 'update',
 				description: 'Modify KPI settings and metrics',
 				action: 'Update KPI',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a KPI from the system',
-				action: 'Delete KPI',
 			},
 		],
 		default: 'create',
@@ -206,13 +206,13 @@ export const kpiFields: INodeProperties[] = [
 		displayName: 'Aggregate',
 		name: 'aggregate',
 		type: 'options',
-		options: [
-			{ name: 'Sum', value: 'sum' },
-			{ name: 'Average', value: 'average' },
-			{ name: 'Count', value: 'count' },
-			{ name: 'Max', value: 'max' },
-			{ name: 'Min', value: 'min' },
-		],
+			options: [
+		{ name: 'Average', value: 'average' },
+		{ name: 'Count', value: 'count' },
+		{ name: 'Max', value: 'max' },
+		{ name: 'Min', value: 'min' },
+		{ name: 'Sum', value: 'sum' },
+	],
 		required: true,
 		displayOptions: {
 			show: {

@@ -19,6 +19,12 @@ export const projectCategoriesOperations: INodeProperties[] = [
 				action: 'Create project category',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a project category from the system',
+				action: 'Delete project category',
+			},
+			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve specific project category information by ID',
@@ -35,12 +41,6 @@ export const projectCategoriesOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Modify project category details and settings',
 				action: 'Update project category',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a project category from the system',
-				action: 'Delete project category',
 			},
 		],
 		default: 'getAll',

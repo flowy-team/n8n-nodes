@@ -19,6 +19,12 @@ export const tasksOperations: INodeProperties[] = [
 				action: 'Create task',
 			},
 			{
+				name: 'Delete',
+				value: 'delete',
+				description: 'Permanently remove a task from the system',
+				action: 'Delete task',
+			},
+			{
 				name: 'Get',
 				value: 'get',
 				description: 'Retrieve a specific task by ID',
@@ -35,12 +41,6 @@ export const tasksOperations: INodeProperties[] = [
 				value: 'update',
 				description: 'Modify task details and properties',
 				action: 'Update task',
-			},
-			{
-				name: 'Delete',
-				value: 'delete',
-				description: 'Permanently remove a task from the system',
-				action: 'Delete task',
 			},
 		],
 		default: 'create',
@@ -457,16 +457,16 @@ export const tasksFields: INodeProperties[] = [
 						value: 'all',
 					},
 					{
-						name: 'Incomplete',
-						value: 'incomplete',
-					},
-					{
 						name: 'Completed',
 						value: 'completed',
 					},
 					{
 						name: 'In Progress',
 						value: 'in progress',
+					},
+					{
+						name: 'Incomplete',
+						value: 'incomplete',
 					},
 					{
 						name: 'Under Review',
