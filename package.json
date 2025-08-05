@@ -15,14 +15,14 @@
     "ai-agent-compatible"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/mupmzfqot/flowy.n8n#readme",
+  "homepage": "https://github.com/flowy-team/n8n-nodes#readme",
   "author": {
     "name": "FlowyTeam",
     "email": "hello@flowyteam.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mupmzfqot/flowy.n8n.git"
+    "url": "https://github.com/flowy-team/n8n-nodes.git"
   },
   "engines": {
     "node": ">=20.15"

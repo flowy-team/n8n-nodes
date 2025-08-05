@@ -8,14 +8,14 @@ Before submitting, update the following files with your actual information:
 #### **package.json**
 ```json
 {
-  "homepage": "https://github.com/mupmzfqot/flowy.n8n#readme",
+  "homepage": "https://github.com/flowy-team/n8n-nodes#readme",
   "author": {
     "name": "YOUR ACTUAL NAME",
     "email": "YOUR.EMAIL@EXAMPLE.COM"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mupmzfqot/flowy.n8n.git"
+    "url": "https://github.com/flowy-team/n8n-nodes.git"
   }
 }
 ```
@@ -26,12 +26,12 @@ Before submitting, update the following files with your actual information:
   "resources": {
     "credentialDocumentation": [
       {
-        "url": "https://github.com/mupmzfqot/flowy.n8n#credentials"
+        "url": "https://github.com/flowy-team/n8n-nodes#credentials"
       }
     ],
     "primaryDocumentation": [
       {
-        "url": "https://github.com/mupmzfqot/flowy.n8n#readme"
+        "url": "https://github.com/flowy-team/n8n-nodes#readme"
       }
     ]
   }
@@ -44,7 +44,7 @@ Copyright (c) 2024 YOUR ACTUAL NAME
 ```
 
 ### 2. **GitHub Repository** ✅ Already Set
-Repository URL: https://github.com/mupmzfqot/flowy.n8n
+Repository URL: https://github.com/flowy-team/n8n-nodes
 
 Ensure the repository has:
 - ✅ Proper README.md (already excellent!)
@@ -94,7 +94,7 @@ Consider updating the version in `package.json`:
 
 Users can install directly from GitHub:
 ```bash
-npm install n8n-nodes-flowyteam@https://github.com/mupmzfqot/flowy.n8n
+npm install n8n-nodes-flowyteam@https://github.com/flowy-team/n8n-nodes
 ```
 
 ## 🎯 **Key Selling Points**
@@ -152,9 +152,9 @@ npm install n8n-nodes-flowyteam
 \```
 
 ## 🔗 Links
-- GitHub: https://github.com/mupmzfqot/flowy.n8n
+- GitHub: https://github.com/flowy-team/n8n-nodes
 - NPM: https://www.npmjs.com/package/n8n-nodes-flowyteam
-- Documentation: [Full README](https://github.com/mupmzfqot/flowy.n8n#readme)
+- Documentation: [Full README](https://github.com/flowy-team/n8n-nodes#readme)
 
 Looking forward to your feedback and contributions! 🙌
 ```
