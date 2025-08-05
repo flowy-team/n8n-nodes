@@ -1,0 +1,1176 @@
+{
+  "name": "Complete Flowyteam AI Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        100,
+        100
+      ],
+      "id": "2dfa7088-6d9e-41c1-af31-40c7faed3743",
+      "name": "When chat message received",
+      "webhookId": "d688310e-c4f9-4566-b8fc-3682b0cdd1b9"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        300,
+        400
+      ],
+      "id": "b6010ea5-dd42-4990-9f0c-8c0cfd963b38",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "6Btr9R7xoHDaU8kg",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "You are a comprehensive Flowyteam management assistant with access to ALL Flowyteam operations. You can manage:\n\n**AVAILABLE RESOURCES:**\n• Tasks (create, get, getAll, update, delete)\n• Attendance (clockIn, clockOut, today)\n• Employees (create, get, getAll, update, delete)\n• Departments (create, get, getAll, update, delete)\n• Designations (create, get, getAll, update, delete)\n• Clients (create, get, getAll, update, delete)\n• Projects (create, get, getAll, update, delete)\n• Project Categories (create, get, getAll, update, delete)\n• Task Categories (create, get, getAll, update, delete)\n• Holidays (create, get, getAll, update, delete)\n• Leave Requests (create, get, getAll, update, delete)\n• KPIs (create, get, getAll, update, delete)\n• KPI Categories (create, get, show, update, delete)\n• KPI Data (getAll, get, update, delete)\n• OKR Objectives (create, get, show, update, delete)\n• OKR Key Results (create, get, show, update, delete)\n• Performance Cycles (create, get, getAll, update, delete)\n• Tickets (create, get, show, update, delete)\n• Ticket Agents (get)\n• Ticket Channels (create, get, getAll, update, delete)\n• Ticket Types (create, get, getAll, update, delete)\n\n**INTELLIGENT PROCESSING:**\n1. Parse natural language requests\n2. Determine the appropriate resource and operation\n3. Extract required parameters\n4. Use the correct Flowyteam tool\n5. Provide clear confirmations\n\n**EXAMPLES:**\n• \"Create a task for user123\" → Use Task Create tool\n• \"Show all employees\" → Use Employee Get All tool\n• \"Clock in from home\" → Use Attendance Clock In tool\n• \"Add new client ABC Corp\" → Use Client Create tool\n• \"Update project status\" → Use Project Update tool\n• \"Create holiday for Christmas\" → Use Holiday Create tool\n• \"Show KPI performance\" → Use KPI Get All tool\n• \"Create ticket for bug report\" → Use Ticket Create tool\n\n**SMART DEFAULTS:**\n• Convert relative dates to proper formats\n• Use reasonable defaults for optional fields\n• Ask for missing required information\n• Provide clear success/error messages\n\nAlways use the appropriate Flowyteam tool based on the user's request and provide helpful confirmations.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        500,
+        100
+      ],
+      "id": "13b8855b-3da2-4732-9f98-a4b7edc1ecee",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        300,
+        200
+      ],
+      "id": "d475e68e-d712-410b-bc9c-4714cbf9d4fd",
+      "name": "Memory"
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "create",
+        "heading": "={{ $fromAI('heading') }}",
+        "userId": "={{ $fromAI('userId') }}",
+        "startDate": "={{ $fromAI('startDate') }}",
+        "dueDate": "={{ $fromAI('dueDate') }}",
+        "priority": "={{ $fromAI('priority') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        0
+      ],
+      "id": "task-create",
+      "name": "Task Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "get",
+        "taskId": "={{ $fromAI('taskId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        0
+      ],
+      "id": "task-get",
+      "name": "Task Get",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        0
+      ],
+      "id": "task-getAll",
+      "name": "Task Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "update",
+        "taskId": "={{ $fromAI('taskId') }}",
+        "userId": "={{ $fromAI('userId') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        0
+      ],
+      "id": "task-update",
+      "name": "Task Update",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "operation": "delete",
+        "taskId": "={{ $fromAI('taskId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        0
+      ],
+      "id": "task-delete",
+      "name": "Task Delete",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attendance",
+        "operation": "clockIn",
+        "working_from": "={{ $fromAI('working_from') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        100
+      ],
+      "id": "attendance-clockIn",
+      "name": "Attendance Clock In",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attendance",
+        "operation": "clockOut",
+        "attendanceId": "={{ $fromAI('attendanceId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        100
+      ],
+      "id": "attendance-clockOut",
+      "name": "Attendance Clock Out",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "attendance",
+        "operation": "today"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        100
+      ],
+      "id": "attendance-today",
+      "name": "Attendance Today",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "employee",
+        "operation": "create",
+        "name": "={{ $fromAI('name') }}",
+        "email": "={{ $fromAI('email') }}",
+        "password": "={{ $fromAI('password') }}",
+        "joiningDate": "={{ $fromAI('joiningDate') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        200
+      ],
+      "id": "employee-create",
+      "name": "Employee Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "employee",
+        "operation": "get",
+        "employeeId": "={{ $fromAI('employeeId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        200
+      ],
+      "id": "employee-get",
+      "name": "Employee Get",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "employee",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        200
+      ],
+      "id": "employee-getAll",
+      "name": "Employee Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "employee",
+        "operation": "update",
+        "employeeId": "={{ $fromAI('employeeId') }}",
+        "name": "={{ $fromAI('name') }}",
+        "email": "={{ $fromAI('email') }}",
+        "joiningDate": "={{ $fromAI('joiningDate') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        200
+      ],
+      "id": "employee-update",
+      "name": "Employee Update",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "employee",
+        "operation": "delete",
+        "employeeId": "={{ $fromAI('employeeId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        200
+      ],
+      "id": "employee-delete",
+      "name": "Employee Delete",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "department",
+        "operation": "create",
+        "teamName": "={{ $fromAI('teamName') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "id": "department-create",
+      "name": "Department Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "department",
+        "operation": "get",
+        "departmentId": "={{ $fromAI('departmentId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        300
+      ],
+      "id": "department-get",
+      "name": "Department Get",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "department",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        300
+      ],
+      "id": "department-getAll",
+      "name": "Department Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "department",
+        "operation": "update",
+        "departmentId": "={{ $fromAI('departmentId') }}",
+        "teamName": "={{ $fromAI('teamName') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1400,
+        300
+      ],
+      "id": "department-update",
+      "name": "Department Update",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "department",
+        "operation": "delete",
+        "departmentId": "={{ $fromAI('departmentId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        300
+      ],
+      "id": "department-delete",
+      "name": "Department Delete",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "client",
+        "operation": "create",
+        "name": "={{ $fromAI('name') }}",
+        "email": "={{ $fromAI('email') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        400
+      ],
+      "id": "client-create",
+      "name": "Client Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "client",
+        "operation": "get",
+        "clientId": "={{ $fromAI('clientId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        400
+      ],
+      "id": "client-get",
+      "name": "Client Get",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "client",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        400
+      ],
+      "id": "client-getAll",
+      "name": "Client Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "project",
+        "operation": "create",
+        "projectName": "={{ $fromAI('projectName') }}",
+        "startDate": "={{ $fromAI('startDate') }}",
+        "deadline": "={{ $fromAI('deadline') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        500
+      ],
+      "id": "project-create",
+      "name": "Project Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "project",
+        "operation": "get",
+        "projectId": "={{ $fromAI('projectId') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        500
+      ],
+      "id": "project-get",
+      "name": "Project Get",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "project",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        500
+      ],
+      "id": "project-getAll",
+      "name": "Project Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "holiday",
+        "operation": "create",
+        "occasion": "={{ $fromAI('occasion') }}",
+        "date": "={{ $fromAI('date') }}"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        600
+      ],
+      "id": "holiday-create",
+      "name": "Holiday Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "holiday",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        600
+      ],
+      "id": "holiday-getAll",
+      "name": "Holiday Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "leave",
+        "operation": "create",
+        "userId": "={{ $fromAI('userId') }}",
+        "leaveTypeId": "={{ $fromAI('leaveTypeId') }}",
+        "duration": "={{ $fromAI('duration') }}",
+        "reason": "={{ $fromAI('reason') }}",
+        "status": "={{ $fromAI('status') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        700
+      ],
+      "id": "leave-create",
+      "name": "Leave Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "leave",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        700
+      ],
+      "id": "leave-getAll",
+      "name": "Leave Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "kpi",
+        "operation": "create",
+        "title": "={{ $fromAI('title') }}",
+        "category": "={{ $fromAI('category') }}",
+        "type": "={{ $fromAI('type') }}",
+        "occurance": "={{ $fromAI('occurance') }}",
+        "view_options": "={{ $fromAI('view_options') }}",
+        "aggregate": "={{ $fromAI('aggregate') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        800
+      ],
+      "id": "kpi-create",
+      "name": "KPI Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "kpi",
+        "operation": "getAll"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        800
+      ],
+      "id": "kpi-getAll",
+      "name": "KPI Get All",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "ticket",
+        "operation": "create",
+        "subject": "={{ $fromAI('subject') }}",
+        "description": "={{ $fromAI('description') }}",
+        "priority": "={{ $fromAI('priority') }}",
+        "user_id": "={{ $fromAI('user_id') }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        800,
+        900
+      ],
+      "id": "ticket-create",
+      "name": "Ticket Create",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "ticket",
+        "operation": "show"
+      },
+      "type": "n8n-nodes-flowyteam.flowyteamTool",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        900
+      ],
+      "id": "ticket-show",
+      "name": "Ticket Show",
+      "credentials": {
+        "flowyteamApi": {
+          "id": "HZ6VHbcNEnbWxKNY",
+          "name": "Flowyteam account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Update": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Delete": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendance Clock In": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendance Clock Out": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attendance Today": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee Update": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Employee Delete": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Department Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Department Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Department Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Department Update": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Department Delete": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Client Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project Get": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Holiday Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Holiday Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leave Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leave Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KPI Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "KPI Get All": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ticket Create": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ticket Show": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "08fd437d-f6b7-4eea-b12e-d8c4602fbd57",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "74689d594fc00d91a4eb8643bf07f57301b850d19c216a1246db2f7086b3d564"
+  },
+  "id": "cvxugwhVujs84JXG",
+  "tags": []
+}

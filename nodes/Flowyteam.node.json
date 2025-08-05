@@ -1,0 +1,22 @@
+{
+	"node": "n8n-nodes-base.Flowyteam",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": [
+		"Business Operations",
+		"Productivity",
+		"Project Management"
+	],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/mupmzfqot/flowy.n8n#credentials"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/mupmzfqot/flowy.n8n#readme"
+			}
+		]
+	}
+}
