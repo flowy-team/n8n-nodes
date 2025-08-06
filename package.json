@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-flowyteam",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "n8n community node for Flowyteam API integration. Manage tasks, projects, employees, departments, attendance, and more with AI Agent support.",
   "keywords": [
     "n8n-community-node-package",
@@ -27,7 +27,7 @@
   "engines": {
     "node": ">=20.15"
   },
-  "main": "dist/nodes/Flowyteam.node.js",
+  "main": "dist/nodes/Flowyteam/Flowyteam.node.js",
   "scripts": {
     "build": "npx rimraf dist && tsc && gulp build:icons",
     "dev": "tsc --watch",
@@ -45,7 +45,7 @@
       "dist/credentials/FlowyteamApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/Flowyteam.node.js"
+      "dist/nodes/Flowyteam/Flowyteam.node.js"
     ]
   },
   "dependencies": {
