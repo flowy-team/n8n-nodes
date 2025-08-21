@@ -9,27 +9,36 @@ import {
 } from 'n8n-workflow';
 
 // Import operations and fields
-import { attendanceOperations, attendanceFields } from '../operations/Attendance/Attendance';
-import { clientOperations, clientFields } from '../operations/Client/Client';
-import { departmentOperations, departmentFields } from '../operations/Department/Department';
-import { designationOperations, designationFields } from '../operations/Designation/Designation';
-import { employeeOperations, employeeFields } from '../operations/Employee/Employee';
-import { holidayOperations, holidayFields } from '../operations/Holiday/Holiday';
-import { keyResultOperations, keyResultFields } from '../operations/KeyResult/KeyResult';
-import { kpiCategoryOperations, kpiCategoryFields } from '../operations/kpiCategories/KpiCategories';
-import { kpiDataOperations, kpiDataFields } from '../operations/kpiData/KPIData';
-import { kpiOperations, kpiFields } from '../operations/kpi/KPI';
-import { leaveOperations, leaveFields } from '../operations/Leave/Leave';
-import { objectiveOperations, objectiveFields } from '../operations/Objective/Objective';
-import { performanceCycleOperations, performanceCycleFields } from '../operations/PerformanceCycle/PerformanceCycle';
-import { projectCategoriesOperations, projectCategoriesFields } from '../operations/projectCategories/ProjectCategories';
-import { projectsOperations, projectsFields } from '../operations/projects/Projects';
-import { taskCategoriesOperations, taskCategoriesFields } from '../operations/taskCategories/TaskCategories';
-import { tasksOperations, tasksFields } from '../operations/tasks/Tasks';
-import { ticketChannelOperations, ticketChannelFields } from '../operations/TicketChannel/TicketChannel';
-import { ticketOperations, ticketFields } from '../operations/Ticket/Ticket';
-import { ticketTypeOperations, ticketTypeFields } from '../operations/TicketType/TicketType';
-import { ticketAgentOperations, ticketAgentFields } from '../operations/TicketAgent/TicketAgent';
+import { attendanceOperations, attendanceFields } from './operations/Attendance/Attendance';
+import { clientOperations, clientFields } from './operations/Client/Client';
+import { departmentOperations, departmentFields } from './operations/Department/Department';
+import { designationOperations, designationFields } from './operations/Designation/Designation';
+import { employeeOperations, employeeFields } from './operations/Employee/Employee';
+import { holidayOperations, holidayFields } from './operations/Holiday/Holiday';
+import { keyResultOperations, keyResultFields } from './operations/KeyResult/KeyResult';
+import { kpiCategoryOperations, kpiCategoryFields } from './operations/kpiCategories/KpiCategories';
+import { kpiDataOperations, kpiDataFields } from './operations/kpiData/KPIData';
+import { kpiOperations, kpiFields } from './operations/kpi/KPI';
+import { leaveOperations, leaveFields } from './operations/Leave/Leave';
+import { objectiveOperations, objectiveFields } from './operations/Objective/Objective';
+import { performanceCycleOperations, performanceCycleFields } from './operations/PerformanceCycle/PerformanceCycle';
+import { projectCategoriesOperations, projectCategoriesFields } from './operations/projectCategories/ProjectCategories';
+import { projectsOperations, projectsFields } from './operations/projects/Projects';
+import { taskCategoriesOperations, taskCategoriesFields } from './operations/taskCategories/TaskCategories';
+import { tasksOperations, tasksFields } from './operations/tasks/Tasks';
+import { ticketChannelOperations, ticketChannelFields } from './operations/TicketChannel/TicketChannel';
+import { ticketOperations, ticketFields } from './operations/Ticket/Ticket';
+import { ticketTypeOperations, ticketTypeFields } from './operations/TicketType/TicketType';
+import { ticketAgentOperations, ticketAgentFields } from './operations/TicketAgent/TicketAgent';
+import { leadOperations, leadFields } from './operations/leads/Leads';
+
+// Import leads endpoints
+const leads = require('./endpoint/leads');
+const createLead = leads.createLead;
+const getLead = leads.getLead;
+const getAllLeads = leads.getAllLeads;
+const updateLead = leads.updateLead;
+const deleteLead = leads.deleteLead;
 
 // Import ticket channel endpoints
 import { createTicketChannel } from '../endpoint/ticket-channel/create';
@@ -199,6 +208,11 @@ const resourceSelector: INodeProperties = {
       description: 'Manage KPI data records',
     },
     {
+      name: 'Lead',
+      value: 'lead',
+      description: 'Manage leads',
+    },
+    {
       name: 'Leave',
       value: 'leave',
       description: 'Manage leave requests',
@@ -257,7 +271,7 @@ const resourceSelector: INodeProperties = {
       name: 'Ticket Type',
       value: 'ticketType',
       description: 'Manage ticket types',
-    },
+    }
   ],
   default: 'task',
 };
@@ -285,6 +299,7 @@ const resources = [
   { name: 'ticketAgent', operations: ticketAgentOperations, fields: ticketAgentFields },
   { name: 'ticketChannel', operations: ticketChannelOperations, fields: ticketChannelFields },
   { name: 'ticketType', operations: ticketTypeOperations, fields: ticketTypeFields },
+  { name: 'lead', operations: leadOperations, fields: leadFields },
 ];
 
 // Combine all properties for the node
@@ -324,8 +339,8 @@ export class Flowyteam implements INodeType {
 		// For ticket, ticket channel, ticket type, client, key result, objective, performance cycle, project, and project category create/update/delete operations, only process the first item to avoid duplicates
 		const firstResource = this.getNodeParameter('resource', 0) as string;
 		const firstOperation = this.getNodeParameter('operation', 0) as string;
-		
-		if ((firstResource === 'ticket' || firstResource === 'ticketChannel' || firstResource === 'ticketType' || firstResource === 'client' || firstResource === 'keyResult' || firstResource === 'objective' || firstResource === 'performanceCycle' || firstResource === 'project' || firstResource === 'projectCategory' || firstResource === 'department' || firstResource === 'holiday' || firstResource === 'leave' || firstResource === 'employee' || firstResource === 'kpiCategory' || firstResource === 'kpi' || firstResource === 'kpiData' || firstResource === 'taskCategory' || firstResource === 'task') && (firstOperation === 'create' || firstOperation === 'update' || firstOperation === 'delete' || firstOperation === 'get')) {
+
+		if ((firstResource === 'ticket' || firstResource === 'ticketChannel' || firstResource === 'ticketType' || firstResource === 'client' || firstResource === 'keyResult' || firstResource === 'objective' || firstResource === 'performanceCycle' || firstResource === 'project' || firstResource === 'projectCategory' || firstResource === 'department' || firstResource === 'holiday' || firstResource === 'leave' || firstResource === 'employee' || firstResource === 'kpiCategory' || firstResource === 'kpi' || firstResource === 'kpiData' || firstResource === 'taskCategory' || firstResource === 'task' || firstResource === 'lead') && (firstOperation === 'create' || firstOperation === 'update' || firstOperation === 'delete' || firstOperation === 'get' || firstOperation === 'getAll')) {
 			// Only process one item using the first input item
 			let responseData;
 			if (firstResource === 'ticket') {
@@ -342,7 +357,7 @@ export class Flowyteam implements INodeType {
 				} else if (firstOperation === 'update') {
 					responseData = await updateTicketChannel.call(this, 0);
 				} else if (firstOperation === 'delete') {
-					responseData = await deleteTicketChannel.call(this, 0);  
+					responseData = await deleteTicketChannel.call(this, 0);
 				}
 			} else if (firstResource === 'ticketType') {
 				if (firstOperation === 'create') {
@@ -479,6 +494,18 @@ export class Flowyteam implements INodeType {
 					responseData = await deleteTask.call(this, 0);
 				} else if (firstOperation === 'get') {
 					responseData = await getTask.call(this, 0);
+				}
+			} else if (firstResource === 'lead') {
+				if (firstOperation === 'create') {
+					responseData = await createLead.call(this, 0);
+				} else if (firstOperation === 'update') {
+					responseData = await updateLead.call(this, 0);
+				} else if (firstOperation === 'delete') {
+					responseData = await deleteLead.call(this, 0);
+				} else if (firstOperation === 'get') {
+					responseData = await getLead.call(this, 0);
+				} else if (firstOperation === 'getAll') {
+					responseData = await getAllLeads.call(this, 0);
 				}
 			}
 			if (responseData) {
@@ -661,6 +688,28 @@ export class Flowyteam implements INodeType {
 							break;
 						default:
 							throw new NodeOperationError(this.getNode(), `The operation '${operation}' is not supported for KPI Category resource`);
+					}
+					break;
+
+				case 'lead':
+					switch (operation) {
+						case 'create':
+							responseData = await createLead.call(this, i);
+							break;
+						case 'get':
+							responseData = await getLead.call(this, i);
+							break;
+						case 'getAll':
+							responseData = await getAllLeads.call(this, i);
+							break;
+						case 'update':
+							responseData = await updateLead.call(this, i);
+							break;
+						case 'delete':
+							responseData = await deleteLead.call(this, i);
+							break;
+						default:
+							throw new NodeOperationError(this.getNode(), `The operation '${operation}' is not supported for Lead resource`);
 					}
 					break;
 
@@ -893,7 +942,7 @@ export class Flowyteam implements INodeType {
               throw new NodeOperationError(this.getNode(), `The operation '${operation}' is not supported for resource '${resource}'.`);
           }
           break;
-          
+
         case 'performanceCycle':
           switch (operation) {
             case 'create':
