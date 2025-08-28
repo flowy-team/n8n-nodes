@@ -35,42 +35,6 @@ export const leadOperations: INodeProperties[] = [
                 },
             },
             {
-                name: 'Get',
-                value: 'get',
-                action: 'Get a lead',
-                description: 'Get a single lead by ID',
-                routing: {
-                    request: {
-                        method: 'GET',
-                        url: '=/leads/{{$parameter.leadId}}',
-                    },
-                },
-            },
-            {
-                name: 'Get All',
-                value: 'getAll',
-                action: 'Get all leads',
-                description: 'Get all leads',
-                routing: {
-                    request: {
-                        method: 'GET',
-                        url: '/leads',
-                    },
-                },
-            },
-            {
-                name: 'Update',
-                value: 'update',
-                action: 'Update a lead',
-                description: 'Update an existing lead',
-                routing: {
-                    request: {
-                        method: 'PUT',
-                        url: '=/leads/{{$parameter.leadId}}',
-                    },
-                },
-            },
-            {
                 name: 'Delete',
                 value: 'delete',
                 action: 'Delete a lead',
@@ -89,6 +53,42 @@ export const leadOperations: INodeProperties[] = [
                                 },
                             },
                         ],
+                    },
+                },
+            },
+            {
+                name: 'Get',
+                value: 'get',
+                action: 'Get a lead',
+                description: 'Get a single lead by ID',
+                routing: {
+                    request: {
+                        method: 'GET',
+                        url: '=/leads/{{$parameter.leadId}}',
+                    },
+                },
+            },
+            {
+                name: 'Get Many',
+                value: 'getAll',
+                action: 'Get many leads',
+                description: 'Get many leads',
+                routing: {
+                    request: {
+                        method: 'GET',
+                        url: '/leads',
+                    },
+                },
+            },
+            {
+                name: 'Update',
+                value: 'update',
+                action: 'Update a lead',
+                description: 'Update an existing lead',
+                routing: {
+                    request: {
+                        method: 'PUT',
+                        url: '=/leads/{{$parameter.leadId}}',
                     },
                 },
             },
