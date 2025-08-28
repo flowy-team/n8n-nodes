@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-flowyteam",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "n8n community node for Flowyteam API integration. Manage tasks, projects, employees, departments, attendance, and more with AI Agent support.",
   "keywords": [
     "n8n-community-node-package",
@@ -52,8 +52,8 @@
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "@types/node": "^20.11.0",
     "@types/dotenv": "^8.2.0",
+    "@types/node": "^20.19.11",
     "@typescript-eslint/parser": "~8.32.0",
     "eslint": "^8.57.0",
     "eslint-plugin-n8n-nodes-base": "^1.16.3",
@@ -62,6 +62,6 @@
     "typescript": "^5.8.2"
   },
   "peerDependencies": {
-    "n8n-workflow": "*"
+    "n8n-workflow": "^1.82.0"
   }
 }

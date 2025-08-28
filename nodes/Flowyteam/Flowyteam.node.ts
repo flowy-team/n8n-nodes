@@ -9,31 +9,31 @@ import {
 } from 'n8n-workflow';
 
 // Import operations and fields
-import { attendanceOperations, attendanceFields } from './operations/Attendance/Attendance';
-import { clientOperations, clientFields } from './operations/Client/Client';
-import { departmentOperations, departmentFields } from './operations/Department/Department';
-import { designationOperations, designationFields } from './operations/Designation/Designation';
-import { employeeOperations, employeeFields } from './operations/Employee/Employee';
-import { holidayOperations, holidayFields } from './operations/Holiday/Holiday';
-import { keyResultOperations, keyResultFields } from './operations/KeyResult/KeyResult';
-import { kpiCategoryOperations, kpiCategoryFields } from './operations/kpiCategories/KpiCategories';
-import { kpiDataOperations, kpiDataFields } from './operations/kpiData/KPIData';
-import { kpiOperations, kpiFields } from './operations/kpi/KPI';
-import { leaveOperations, leaveFields } from './operations/Leave/Leave';
-import { objectiveOperations, objectiveFields } from './operations/Objective/Objective';
-import { performanceCycleOperations, performanceCycleFields } from './operations/PerformanceCycle/PerformanceCycle';
-import { projectCategoriesOperations, projectCategoriesFields } from './operations/projectCategories/ProjectCategories';
-import { projectsOperations, projectsFields } from './operations/projects/Projects';
-import { taskCategoriesOperations, taskCategoriesFields } from './operations/taskCategories/TaskCategories';
-import { tasksOperations, tasksFields } from './operations/tasks/Tasks';
-import { ticketChannelOperations, ticketChannelFields } from './operations/TicketChannel/TicketChannel';
-import { ticketOperations, ticketFields } from './operations/Ticket/Ticket';
-import { ticketTypeOperations, ticketTypeFields } from './operations/TicketType/TicketType';
-import { ticketAgentOperations, ticketAgentFields } from './operations/TicketAgent/TicketAgent';
-import { leadOperations, leadFields } from './operations/leads/Leads';
+import { attendanceOperations, attendanceFields } from '../operations/Attendance/Attendance';
+import { clientOperations, clientFields } from '../operations/Client/Client';
+import { departmentOperations, departmentFields } from '../operations/Department/Department';
+import { designationOperations, designationFields } from '../operations/Designation/Designation';
+import { employeeOperations, employeeFields } from '../operations/Employee/Employee';
+import { holidayOperations, holidayFields } from '../operations/Holiday/Holiday';
+import { keyResultOperations, keyResultFields } from '../operations/KeyResult/KeyResult';
+import { kpiCategoryOperations, kpiCategoryFields } from '../operations/kpiCategories/KpiCategories';
+import { kpiDataOperations, kpiDataFields } from '../operations/kpiData/KPIData';
+import { kpiOperations, kpiFields } from '../operations/kpi/KPI';
+import { leaveOperations, leaveFields } from '../operations/Leave/Leave';
+import { objectiveOperations, objectiveFields } from '../operations/Objective/Objective';
+import { performanceCycleOperations, performanceCycleFields } from '../operations/PerformanceCycle/PerformanceCycle';
+import { projectCategoriesOperations, projectCategoriesFields } from '../operations/projectCategories/ProjectCategories';
+import { projectsOperations, projectsFields } from '../operations/projects/Projects';
+import { taskCategoriesOperations, taskCategoriesFields } from '../operations/taskCategories/TaskCategories';
+import { tasksOperations, tasksFields } from '../operations/tasks/Tasks';
+import { ticketChannelOperations, ticketChannelFields } from '../operations/TicketChannel/TicketChannel';
+import { ticketOperations, ticketFields } from '../operations/Ticket/Ticket';
+import { ticketTypeOperations, ticketTypeFields } from '../operations/TicketType/TicketType';
+import { ticketAgentOperations, ticketAgentFields } from '../operations/TicketAgent/TicketAgent';
+import { leadOperations, leadFields } from '../operations/leads/Leads';
 
 // Import leads endpoints
-const leads = require('./endpoint/leads');
+const leads = require('../endpoint/leads');
 const createLead = leads.createLead;
 const getLead = leads.getLead;
 const getAllLeads = leads.getAllLeads;
